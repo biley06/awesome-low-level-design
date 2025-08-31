@@ -10,7 +10,7 @@
 
 ## Notes from Biley
 1. Another yoututbe video to refer: https://youtu.be/RljSBrZeJ3w?si=HkyoBVq1EBFYtOBs  and its code at: https://github.com/TheTechGranth/thegranths/tree/master/src/main/java/SystemDesign/LoggingFramework
-2. You do not need to do async works.
+2. You do not need to do async works or root logger.
 3. LogManager --> singleton, and manages the loggers
 4. Logger --> Each Logger behaves like a singleton per name (multiton), ie, there is only one logger per class name. Thus, when we call LogManager.getLogger(class name), we either create a logger or get the one.
 5. This logger has configurations like list of appenders. This is observer design pattern. Once we decide that we need to log some message based on the log level, then we notify all appenders about this message and they display it.
