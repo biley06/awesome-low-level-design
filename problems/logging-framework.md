@@ -8,6 +8,15 @@
 5. The logging framework should be thread-safe to handle concurrent logging from multiple threads.
 6. It should be extensible to accommodate new log levels and output destinations in the future.
 
+## Notes from Biley
+1. Another yoututbe video to refer: https://youtu.be/RljSBrZeJ3w?si=HkyoBVq1EBFYtOBs  and its code at: https://github.com/TheTechGranth/thegranths/tree/master/src/main/java/SystemDesign/LoggingFramework
+2. You do not need to do async works.
+3. LogManager --> singleton, and manages the loggers
+4. Logger --> Each Logger behaves like a singleton per name (multiton), ie, there is only one logger per class name. Thus, when we call LogManager.getLogger(class name), we either create a logger or get the one.
+5. This logger has configurations like list of appenders. This is observer design pattern. Once we decide that we need to log some message based on the log level, then we notify all appenders about this message and they display it.
+6. Each appender is configured with a formatter, ie, how the message should be formatted for it. All these configurations are done when the logger is created first time for a class by the manager.
+7. We can also add chain of responsibility pattern here, ie, the message flows through the chain till the final level is reached, and if it gets printed somewehre then we break. Else if it is not picked by any logger till that level, then its rejected. In that case, the Abstract logger will have the list of appenders and the Logger will have this abstract logger.
+
 ## UML Class Diagram
 
 ![](../class-diagrams/loggingframework-class-diagram.png)
