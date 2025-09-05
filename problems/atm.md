@@ -8,6 +8,10 @@
 5. The system should handle concurrent access and ensure data consistency.
 6. The ATM should have a user-friendly interface for users to interact with.
 
+## Notes from Biley
+1. The ATM system should only handle a single request at a time, its not a distributed system. Its like an ATM machine which only processes one user.
+2. The ATM will not hold the card, and the bank service is not correct in the UML. ATM will have a current user, and the user will have a bank account and card. When a user enters his card, then the bank service will call the bank apis to verify that the pin is correct and amtches the card and the bank account is active.
+
 ## UML Class Diagram
 
 ![](../class-diagrams/atm-class-diagram.png)
