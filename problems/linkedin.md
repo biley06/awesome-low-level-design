@@ -27,6 +27,16 @@
 - The system should be designed to handle a large number of concurrent users and high traffic load.
 - The system should be scalable and efficient in terms of resource utilization.
 
+## Notes from Biley
+- LinkedinSystem will have UserService, NewsFeedService, ConnectionService, NotificationService, SearchService
+- UserService will have all the user data, profile, etc, and all operations to do crud on these data.
+- NewsFeedService will interact with user service to get user data and connection lists, and update the news feed for each user. This seperation to a new service will help in moving all logic to it. We can use news feed strategy inside it and use strategy pattern to add different sorting strategy for news feed generation.
+- When a user posts a new post, it goes to user service and is added to its Data structure. US then calls NFS and adds to news feeds of all users who have this user as its connection (fan-out).
+- Any connection request goes to CS, which registers this connection, and calls US to add this in pending connections list of the user. It the calls NS for sending notification.
+- When a user accepts a connection, then both the parties connection list is updated. Similar to observer pattern, but might be an overkill.
+- SS interacts with US for searching.
+- Post should implement Commentable interface. 
+
 ## UML Class Diagram
 
 ![](../class-diagrams/linkedin-class-diagram.png)
