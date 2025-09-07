@@ -9,6 +9,12 @@
 6. The game should handle player turns and validate moves to ensure they are legal.
 7. The game should detect and announce the winner or a draw at the end of the game.
 
+## Notes from Biley
+- The TicTacToeSystem will have multiple games.
+- Each game will have a scoreboard. We will not user observer pattern here, but remember that observer is a good pattern for score board when multiple players need display. Like when scoreboard is updated, then each player should get a notification or display should be updated for them.
+- State pattern is an overkill here as there is only one function, and only in INPROGRESS state it has implementation. However, remember that state is one common pattern in such cases.
+- The winning strategy should be a chain of responsisbility instead. Like WinningCheckChain which is implemnted by RowCheckChain, ColumnCheckChain, DiagonalCheckChain or any new rule can be easily added to this chain. Follows O of SOLID
+
 ## UML Class Diagram
 
 ![](../class-diagrams/tictactoe-class-diagram.png)
