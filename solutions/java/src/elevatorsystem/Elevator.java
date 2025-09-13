@@ -17,8 +17,8 @@ public class Elevator implements Runnable {
     private ElevatorState state;
     private volatile boolean isRunning = true;
 
-    private final TreeSet<Integer> upRequests;
-    private final TreeSet<Integer> downRequests;
+    private final TreeSet<Integer> upRequests; //sorted in increasing order
+    private final TreeSet<Integer> downRequests; //sorted in decreasing order
 
     // Observer Pattern: List of observers
     private final List<ElevatorObserver> observers = new ArrayList<>();
@@ -74,6 +74,10 @@ public class Elevator implements Runnable {
     public boolean isRunning() { return isRunning; }
     public void stopElevator() { this.isRunning = false; }
 
+    //The elevator class implements the Runnable interface.
+    //So, its a thread and is running. 
+    //It only calls move() and the state has a move() implementation which determines
+    //which floor to go to.
     @Override
     public void run() {
         while (isRunning) {
