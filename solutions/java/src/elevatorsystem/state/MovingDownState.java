@@ -7,6 +7,8 @@ import elevatorsystem.models.Request;
 
 public class MovingDownState implements ElevatorState {
     @Override
+    // For DOWN state, the move() function only takes the first down request x , x < curr floor
+    // If no x, then set to IDLE state
     public void move(Elevator elevator) {
         if (elevator.getDownRequests().isEmpty()) {
             elevator.setState(new IdleState());
@@ -39,6 +41,8 @@ public class MovingDownState implements ElevatorState {
         }
 
         // External requests
+        // If request is to go down and target floor x < curr floor --> add in down set
+        // else put in up request. will do it later.
         if (request.getDirection() == Direction.DOWN && request.getTargetFloor() <= elevator.getCurrentFloor()) {
             elevator.getDownRequests().add(request.getTargetFloor());
         } else if (request.getDirection() == Direction.UP) {
