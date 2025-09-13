@@ -15,6 +15,10 @@ public class MovingDownState implements ElevatorState {
             return;
         }
 
+        //Elevator moves one by one. The thread calls move() and then sleeps for 1s.
+        //Everytime the curr floor decreases by 1 in 1 s.
+        //If curr floor has reacedh the next floor, then only the request is removed from down set.
+
         Integer nextFloor = elevator.getDownRequests().first();
         elevator.setCurrentFloor(elevator.getCurrentFloor() - 1);
 
